@@ -1,10 +1,10 @@
 [package]
 name = "nali"
-version = "2.1.0"
-authors = ["morganamilo <morganamilo@archlinux.org>"]
+version = "1.0.0"
+authors = ["morganamilo <morganamilo@archlinux.org>", "koompi <dev@koompi.org>"]
 edition = "2021"
 
-description = "User-friendly package manager for KhmerOS - a fork of paru"
+description = "User-friendly package manager for KhmerOS - based on paru"
 homepage = "https://github.com/koompi/nali"
 repository = "https://github.com/koompi/nali"
 documentation = "https://docs.rs/paru"

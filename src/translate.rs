@@ -71,11 +71,13 @@ impl CommandTranslator {
     }
 
     /// Returns a list of all supported English commands
+    #[cfg(test)]
     pub fn supported_commands(&self) -> Vec<&str> {
         self.translations.keys().map(|k| k.as_str()).collect()
     }
 
     /// Checks if a command is a supported English command
+    #[cfg(test)]
     pub fn is_english_command(&self, cmd: &str) -> bool {
         self.translations.contains_key(&cmd.to_lowercase())
     }
