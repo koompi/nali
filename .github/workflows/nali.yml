@@ -48,16 +48,7 @@ jobs:
       image: archlinux
     steps:
       - name: Install Packages
-        run: pacman -Syu rust curl clang git base-devel libarchive meson asciidoc doxygen fakechroot pkgconf --noconfirm --needed
-
-      - name: Install Pacman-git
-        run: |
-          git clone https://aur.archlinux.org/pacman-git
-          chown -R nobody pacman-git
-          cd pacman-git
-          sudo -u nobody makepkg --nocheck
-          sudo -u nobody makepkg --packagelist > list
-          yes | pacman -U $(cat list)
+        run: pacman -Syu rust clang gcc git libarchive pkgconf sudo fakeroot --noconfirm --needed
 
       - name: Checkout
         uses: actions/checkout@v2
