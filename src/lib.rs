@@ -168,12 +168,12 @@ async fn run2<S: AsRef<str>>(config: &mut Config, args: &[S]) -> Result<i32> {
     };
 
     let translator = crate::translate::CommandTranslator::new();
-    
+
     // Convert args to Vec<String> for translation
     let string_args: Vec<String> = args.iter().map(|s| s.as_ref().to_string()).collect();
-    
+
     let translated_args = translator.translate(&string_args);
-    
+
     log::debug!("Original args: {:?}", string_args);
     log::debug!("Translated args: {:?}", translated_args);
 
