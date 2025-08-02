@@ -8,7 +8,7 @@ pub struct CommandTranslator {
 impl CommandTranslator {
     pub fn new() -> Self {
         let mut translations = HashMap::new();
-        
+
         // Core package operations
         translations.insert("install".to_string(), vec!["-S".to_string()]);
         translations.insert("update".to_string(), vec!["-Syu".to_string()]);
@@ -18,13 +18,16 @@ impl CommandTranslator {
         translations.insert("info".to_string(), vec!["-Si".to_string()]);
         translations.insert("list".to_string(), vec!["-Q".to_string()]);
         translations.insert("clean".to_string(), vec!["-Sc".to_string()]);
-        
+
         // Additional operations
         translations.insert("download".to_string(), vec!["-Sw".to_string()]);
-        translations.insert("reinstall".to_string(), vec!["-S".to_string(), "--needed".to_string()]);
+        translations.insert(
+            "reinstall".to_string(),
+            vec!["-S".to_string(), "--needed".to_string()],
+        );
         translations.insert("purge".to_string(), vec!["-Rns".to_string()]);
         translations.insert("autoremove".to_string(), vec!["-Rns".to_string()]);
-        
+
         // Package queries
         translations.insert("installed".to_string(), vec!["-Q".to_string()]);
         translations.insert("orphans".to_string(), vec!["-Qtd".to_string()]);
@@ -33,16 +36,19 @@ impl CommandTranslator {
         translations.insert("files".to_string(), vec!["-Ql".to_string()]);
         translations.insert("owns".to_string(), vec!["-Qo".to_string()]);
         translations.insert("depends".to_string(), vec!["-Qi".to_string()]);
-        
+
         // Repository operations
         translations.insert("refresh".to_string(), vec!["-Sy".to_string()]);
         translations.insert("mirror-update".to_string(), vec!["-Syy".to_string()]);
-        
+
         // Package verification
         translations.insert("check".to_string(), vec!["-Dk".to_string()]);
         translations.insert("verify".to_string(), vec!["-Qk".to_string()]);
-        translations.insert("cache-info".to_string(), vec!["-Sc".to_string(), "--print".to_string()]);
-        
+        translations.insert(
+            "cache-info".to_string(),
+            vec!["-Sc".to_string(), "--print".to_string()],
+        );
+
         CommandTranslator { translations }
     }
 
@@ -53,7 +59,7 @@ impl CommandTranslator {
         }
 
         let first_arg = &args[0];
-        
+
         // Check if it's already a pacman flag (starts with -)
         if first_arg.starts_with('-') {
             return args.to_vec();
@@ -71,11 +77,13 @@ impl CommandTranslator {
     }
 
     /// Returns a list of all supported English commands
+    #[cfg(test)]
     pub fn supported_commands(&self) -> Vec<&str> {
         self.translations.keys().map(|k| k.as_str()).collect()
     }
 
     /// Checks if a command is a supported English command
+    #[cfg(test)]
     pub fn is_english_command(&self, cmd: &str) -> bool {
         self.translations.contains_key(&cmd.to_lowercase())
     }

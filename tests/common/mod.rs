@@ -172,7 +172,7 @@ async fn run(run_args: &[&str], repo: bool) -> Result<(TempDir, i32)> {
     if repo {
         let mut args = args.clone();
         args.push("-Ly");
-        let ret = paru::run(&args).await;
+        let ret = nali::run(&args).await;
         assert_eq!(ret, 0);
     }
 
